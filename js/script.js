@@ -29,6 +29,8 @@ function operate (num1, num2, operator) {
     } 
 }
 
+
+
 let currentNumber = "";
 let previousNumber = "";
 let operator = "";
@@ -39,9 +41,15 @@ const arithmeticKeys = document.querySelectorAll("div.arithmetic");
 const equalKey = document.querySelector("div.equal");
 const allClearKey = document.querySelector("div.all-clear");
 const clearKey = document.querySelector("div.clear");
+const decimalPointKey = document.querySelector("div.decimal-point");
+const plusMinusKey = document.querySelector("div.plus-minus");
 
 numberKeys.forEach((numberKey) => {
     numberKey.addEventListener("click", (event) => {
+        if (operator === "=") {
+            operator = "";
+            previousNumber = "";
+        }
         currentNumber += event.target.textContent;
         display.textContent = `${currentNumber}`;
     })
@@ -64,19 +72,13 @@ arithmeticKeys.forEach((arithmeticKey) => {
     })
 });
 
-equalKey.addEventListener("click", (event) => {
-    if (!!previousNumber) {
-        if (!operator) {
-            currentNumber = previousNumber;
-            previousNumber = "";
-        }
-        else {
-            currentNumber = operate(+previousNumber, +currentNumber, operator);
-            previousNumber = "";
-            operator = "";
-        }
+equalKey.addEventListener("click", (event) => { 
+    if ("+-*/".includes(operator)) {
+        currentNumber = operate(+previousNumber, +currentNumber, operator);
+        previousNumber = ""
+        operator = "=";
+        display.textContent = `${currentNumber}`
     }
-    display.textContent = `${currentNumber}`;
 });
 
 allClearKey.addEventListener("click", (event) => {
@@ -91,3 +93,12 @@ clearKey.addEventListener("click", (event) => {
     display.textContent = `${currentNumber}`;
 });
 
+plusMinusKey.addEventListener("click", (event) => {
+    if (currentNumber[0] === "-") {
+        currentNumber = currentNumber.slice(1);
+    }
+    else {
+        currentNumber = "-" + currentNumber;
+    }
+    display.textContent = `${currentNumber}`;
+})
