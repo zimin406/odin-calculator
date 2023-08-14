@@ -20,6 +20,12 @@ div.display {
     border: 2px solid rgb(47, 47, 47);
     background-color:rgb(241, 241, 241);
     margin-bottom: 36px;
+    display: flex;
+    justify-content: right;
+    align-items: flex-end;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    font-size: 32px;
 }
 
 div.key-container {

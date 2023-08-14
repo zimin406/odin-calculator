@@ -36,3 +36,15 @@ function operate (num1, num2, operator) {
     } 
 }
 
+let currentNumber = "";
+let previousNumber = "";
+const display = document.querySelector("div.display");
+
+const numberKeys = document.querySelectorAll("div.number");
+numberKeys.forEach((numberKey) => {
+    numberKey.addEventListener("click", (event) => {
+        currentNumber += event.target.textContent;
+        display.textContent = currentNumber;
+    })
+})
+
