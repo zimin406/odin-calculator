@@ -37,7 +37,8 @@ const display = document.querySelector("div.display");
 const numberKeys = document.querySelectorAll("div.number");
 const arithmeticKeys = document.querySelectorAll("div.arithmetic");
 const equalKey = document.querySelector("div.equal");
-
+const allClearKey = document.querySelector("div.all-clear");
+const clearKey = document.querySelector("div.clear");
 
 numberKeys.forEach((numberKey) => {
     numberKey.addEventListener("click", (event) => {
@@ -77,3 +78,16 @@ equalKey.addEventListener("click", (event) => {
     }
     display.textContent = `${currentNumber}`;
 });
+
+allClearKey.addEventListener("click", (event) => {
+    previousNumber = "";
+    currentNumber = "";
+    operator = "";
+    display.textContent = `${currentNumber}`;
+});
+
+clearKey.addEventListener("click", (event) => {
+    currentNumber = currentNumber.slice(0, -1);
+    display.textContent = `${currentNumber}`;
+});
+
