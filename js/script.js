@@ -43,6 +43,7 @@ const allClearKey = document.querySelector("div.all-clear");
 const clearKey = document.querySelector("div.clear");
 const decimalPointKey = document.querySelector("div.decimal-point");
 const plusMinusKey = document.querySelector("div.plus-minus");
+const allKeys = document.querySelectorAll("div.key");
 
 numberKeys.forEach((numberKey) => {
     numberKey.addEventListener("click", (event) => {
@@ -105,6 +106,7 @@ plusMinusKey.addEventListener("click", (event) => {
 })
 
 decimalPointKey.addEventListener("click", (event) => {
+    if (currentNumber.includes(".")) return; 
     if (currentNumber.length === 0) currentNumber = "0.";
     else currentNumber += ".";
     display.textContent = `${currentNumber}`;
