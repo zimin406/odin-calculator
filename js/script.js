@@ -104,6 +104,13 @@ function clear() {
     display.textContent = `${currentNumber}`;
 }
 
+function allClear() {
+    previousNumber = "";
+    currentNumber = "0";
+    operator = "";
+    display.textContent = `${currentNumber}`;
+}
+
 numberKeys.forEach((numberKey) => {
     numberKey.addEventListener("click", (event) => {
         inputNumber(event.target.textContent);
@@ -121,10 +128,7 @@ equalKey.addEventListener("click", (event) => {
 });
 
 allClearKey.addEventListener("click", (event) => {
-    previousNumber = "";
-    currentNumber = "0";
-    operator = "";
-    display.textContent = `${currentNumber}`;
+    allClear();
 });
 
 clearKey.addEventListener("click", (event) => {
@@ -156,6 +160,9 @@ document.addEventListener("keydown", (event) => {
     }
     else if (key === "Backspace") {
         clear();
+    }
+    else if (key === "Escape") {
+        allClear();
     }
     else {
         return;
