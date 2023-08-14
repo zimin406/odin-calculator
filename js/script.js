@@ -51,6 +51,7 @@ numberKeys.forEach((numberKey) => {
             operator = "";
             previousNumber = "";
         }
+        if (currentNumber.length >= 9) return;
         currentNumber += event.target.textContent;
         currentNumber = (+currentNumber).toString();
         display.textContent = `${currentNumber}`;
@@ -77,9 +78,13 @@ arithmeticKeys.forEach((arithmeticKey) => {
 equalKey.addEventListener("click", (event) => { 
     if (["+", "-", "*", "/"].includes(operator)) {
         currentNumber = operate(+previousNumber, +currentNumber, operator).toString();
-        previousNumber = ""
         operator = "=";
-        display.textContent = `${currentNumber}`
+        if (currentNumber.length >= 9) {
+            display.textContent = `${(+currentNumber).toExponential(3)}`;
+        }
+        else {
+            display.textContent = `${currentNumber}`;
+        }
     }
 });
 
