@@ -14,37 +14,54 @@ function divide (num1, num2) {
     return num1 / num2;
 }
 
-let num1 = null;
-let num2 = null;
-let operator = null;
 
 function operate (num1, num2, operator) {
     switch (operator) {
         case "+":
-            add(num1, num2);
-            break;
+            return add(num1, num2);
         case "-":
-            subtract(num1, num2);
-            break;
+            return subtract(num1, num2);
         case "*":
-            multiply(num1, num2);
-            break;
+            return multiply(num1, num2);
         case "/":
-            divide(num1, num2);
-            break;
+            return divide(num1, num2);
         default:
     } 
 }
 
 let currentNumber = "";
 let previousNumber = "";
-const display = document.querySelector("div.display");
+let operator = "";
 
+const display = document.querySelector("div.display");
 const numberKeys = document.querySelectorAll("div.number");
+const arithmeticKeys = document.querySelectorAll("div.arithmetic");
+const equalKey = document.querySelector("div.equal");
+
+
 numberKeys.forEach((numberKey) => {
     numberKey.addEventListener("click", (event) => {
         currentNumber += event.target.textContent;
-        display.textContent = currentNumber;
+        display.textContent = `${currentNumber}`;
     })
-})
+});
 
+arithmeticKeys.forEach((arithmeticKey) => {
+    arithmeticKey.addEventListener("click", (event) => {
+        if (!previousNumber) {
+            operator = event.target.textContent;
+            previousNumber = currentNumber;
+            currentNumber = "";
+            display.textContent = `${operator}`;
+        }
+        else {
+            previousNumber = operate(+previousNumber, +currentNumber, operator);
+            operator = event.target.textContent;
+            currentNumber = "";
+            display.textContent = `${previousNumber}`;
+        }       
+    })
+});
+
+equalKey.addEventListener("click", (event) => {
+});
