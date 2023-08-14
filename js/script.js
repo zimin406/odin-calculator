@@ -64,4 +64,16 @@ arithmeticKeys.forEach((arithmeticKey) => {
 });
 
 equalKey.addEventListener("click", (event) => {
+    if (!!previousNumber) {
+        if (!operator) {
+            currentNumber = previousNumber;
+            previousNumber = "";
+        }
+        else {
+            currentNumber = operate(+previousNumber, +currentNumber, operator);
+            previousNumber = "";
+            operator = "";
+        }
+    }
+    display.textContent = `${currentNumber}`;
 });
