@@ -74,7 +74,7 @@ arithmeticKeys.forEach((arithmeticKey) => {
 });
 
 equalKey.addEventListener("click", (event) => { 
-    if ("+-*/".includes(operator)) {
+    if (["+", "-", "*", "/"].includes(operator)) {
         currentNumber = operate(+previousNumber, +currentNumber, operator);
         previousNumber = ""
         operator = "=";
