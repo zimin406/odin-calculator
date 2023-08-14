@@ -94,11 +94,6 @@ clearKey.addEventListener("click", (event) => {
 });
 
 plusMinusKey.addEventListener("click", (event) => {
-    if (currentNumber[0] === "-") {
-        currentNumber = currentNumber.slice(1);
-    }
-    else {
-        currentNumber = "-" + currentNumber;
-    }
+    currentNumber = -(+currentNumber);
     display.textContent = `${currentNumber}`;
 })
