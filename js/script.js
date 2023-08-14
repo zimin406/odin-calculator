@@ -94,6 +94,16 @@ function decimalPoint () {
     display.textContent = `${currentNumber}`;
 }
 
+function clear() {
+    if (currentNumber.length > 1) {
+        currentNumber = currentNumber.slice(0, -1);
+    }
+    else {
+        currentNumber = "0";
+    }
+    display.textContent = `${currentNumber}`;
+}
+
 numberKeys.forEach((numberKey) => {
     numberKey.addEventListener("click", (event) => {
         inputNumber(event.target.textContent);
@@ -118,13 +128,7 @@ allClearKey.addEventListener("click", (event) => {
 });
 
 clearKey.addEventListener("click", (event) => {
-    if (currentNumber.length > 1) {
-        currentNumber = currentNumber.slice(0, -1);
-    }
-    else {
-        currentNumber = "0";
-    }
-    display.textContent = `${currentNumber}`;
+    clear();
 });
 
 plusMinusKey.addEventListener("click", (event) => {
@@ -149,6 +153,9 @@ document.addEventListener("keydown", (event) => {
     }
     else if (key === "Enter") {
         equal();
+    }
+    else if (key === "Backspace") {
+        clear();
     }
     else {
         return;
