@@ -90,7 +90,12 @@ allClearKey.addEventListener("click", (event) => {
 });
 
 clearKey.addEventListener("click", (event) => {
-    currentNumber = currentNumber.slice(0, -1);
+    if (currentNumber.length > 1) {
+        currentNumber = currentNumber.slice(0, -1);
+    }
+    else {
+        currentNumber = "0";
+    }
     display.textContent = `${currentNumber}`;
 });
 
