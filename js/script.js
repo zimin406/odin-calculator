@@ -51,6 +51,7 @@ numberKeys.forEach((numberKey) => {
             previousNumber = "";
         }
         currentNumber += event.target.textContent;
+        currentNumber = +currentNumber;
         display.textContent = `${currentNumber}`;
     })
 });
@@ -95,5 +96,11 @@ clearKey.addEventListener("click", (event) => {
 
 plusMinusKey.addEventListener("click", (event) => {
     currentNumber = -(+currentNumber);
+    display.textContent = `${currentNumber}`;
+})
+
+decimalPointKey.addEventListener("click", (event) => {
+    if (currentNumber.length === 0) currentNumber = "0.";
+    else currentNumber += ".";
     display.textContent = `${currentNumber}`;
 })
