@@ -50,7 +50,7 @@ const allKeys = document.querySelectorAll("div.key");
 function inputNumber (inputNumber) {
     if (operator === "=") {
         operator = "";
-        previousNumber = "";
+        currentNumber = "";
     }
     if (currentNumber.length >= 9) return;
     currentNumber += inputNumber;
@@ -76,6 +76,7 @@ function inputOperator (inputOperator) {
 function equal () {
     if (["+", "-", "*", "/"].includes(operator)) {
         currentNumber = operate(+previousNumber, +currentNumber, operator).toString();
+        previousNumber = "";
         operator = "=";
         if (currentNumber.length >= 9) {
             display.textContent = `${(+currentNumber).toExponential(3)}`;
