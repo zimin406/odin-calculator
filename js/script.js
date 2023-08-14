@@ -51,7 +51,7 @@ numberKeys.forEach((numberKey) => {
             previousNumber = "";
         }
         currentNumber += event.target.textContent;
-        currentNumber = +currentNumber;
+        currentNumber = (+currentNumber).toString();
         display.textContent = `${currentNumber}`;
     })
 });
@@ -65,7 +65,7 @@ arithmeticKeys.forEach((arithmeticKey) => {
             display.textContent = `${operator}`;
         }
         else {
-            previousNumber = operate(+previousNumber, +currentNumber, operator);
+            previousNumber = operate(+previousNumber, +currentNumber, operator).toString();
             operator = event.target.textContent;
             currentNumber = "";
             display.textContent = `${previousNumber}`;
@@ -75,7 +75,7 @@ arithmeticKeys.forEach((arithmeticKey) => {
 
 equalKey.addEventListener("click", (event) => { 
     if (["+", "-", "*", "/"].includes(operator)) {
-        currentNumber = operate(+previousNumber, +currentNumber, operator);
+        currentNumber = operate(+previousNumber, +currentNumber, operator).toString();
         previousNumber = ""
         operator = "=";
         display.textContent = `${currentNumber}`
@@ -84,7 +84,7 @@ equalKey.addEventListener("click", (event) => {
 
 allClearKey.addEventListener("click", (event) => {
     previousNumber = "";
-    currentNumber = "";
+    currentNumber = "0";
     operator = "";
     display.textContent = `${currentNumber}`;
 });
@@ -95,7 +95,7 @@ clearKey.addEventListener("click", (event) => {
 });
 
 plusMinusKey.addEventListener("click", (event) => {
-    currentNumber = -(+currentNumber);
+    currentNumber = (-(+currentNumber)).toString();
     display.textContent = `${currentNumber}`;
 })
 
